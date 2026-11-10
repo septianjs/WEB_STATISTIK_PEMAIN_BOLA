@@ -101,6 +101,16 @@ class Session extends BaseConfig
      */
     public ?string $DBGroup = null;
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        // A literal "null" from .env is a relative path, not an unset value.
+        if (strtolower($this->savePath) === 'null') {
+            $this->savePath = WRITEPATH . 'session';
+        }
+    }
+
     /**
      * --------------------------------------------------------------------------
      * Lock Retry Interval (microseconds)

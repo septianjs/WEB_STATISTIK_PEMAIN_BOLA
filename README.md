@@ -149,7 +149,9 @@ dahulu.
    mengirim file `.env` maupun kredensial database.
 4. Pastikan `writable/` dan subfoldernya dapat ditulis oleh PHP. Jangan
    mengubahnya menjadi dapat ditulis semua pengguna jika hosting menyediakan
-   pengaturan izin yang lebih terbatas.
+   pengaturan izin yang lebih terbatas. Jangan set `session.savePath = null`;
+   biarkan tidak disetel agar CodeIgniter menyimpan sesi di `writable/session`,
+   di luar document root.
 5. Siapkan skema dan data melalui phpMyAdmin atau metode database yang
    disediakan hosting. Dump `db_statistik_pemain.sql` tidak disertakan di Git
    dan berisi akun demo; jangan impor ke situs publik sebelum mengganti kata

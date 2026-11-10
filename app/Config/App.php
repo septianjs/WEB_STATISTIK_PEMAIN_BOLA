@@ -205,7 +205,7 @@ class App extends BaseConfig
         parent::__construct();
 
         // Otomatis deteksi baseURL jika diakses via XAMPP Apache atau php spark serve
-        if (isset($_SERVER['HTTP_HOST'])) {
+        if (isset($_SERVER['HTTP_HOST']) && $this->baseURL === 'http://localhost:8080/') {
             $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
             $scriptName = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
             $dir = str_replace('\\', '/', dirname($scriptName));

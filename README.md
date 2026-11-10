@@ -63,9 +63,9 @@ RW/LW dan CDM masing-masing berjumlah 99%; perhitungan membagi dengan total bobo
 
 ## 🔑 Akun Pelatih
 
-- **URL Akses**: `http://localhost:8080/login`
-- **Username**: `admin`
-- **Password**: `admin123`
+Seeder pengembangan membuat akun demo `admin`. Jangan memakai kata sandi demo
+(`admin123`) di server publik; ganti hash kata sandi akun melalui database
+sebelum membuka aplikasi untuk umum.
 
 ---
 
@@ -86,4 +86,79 @@ Jika database diimpor dari dump lama, jalankan migrasi untuk menambahkan field s
 php spark migrate
 ```
 
-File dump database SQL tersedia di: `db_statistik_pemain.sql`.
+Dump database lokal `db_statistik_pemain.sql` tidak disertakan di Git karena
+berisi data demo dan akun admin bawaan.
+
+---
+
+## 🌐 Deployment ke Shared Hosting
+
+Aplikasi memerlukan **PHP 8.2 atau lebih baru**, ekstensi `mysqli`, dan
+database MySQL/MariaDB. Pastikan paket hosting mengaktifkan versi dan ekstensi
+tersebut sebelum mengunggah aplikasi.
+
+### Tata letak file yang disarankan
+
+Jangan jadikan folder proyek sebagai document root. Simpan kode aplikasi dan
+dependensi di luar folder publik; letakkan hanya isi folder `public/` di
+document root hosting. Contoh:
+
+```text
+home/
+├── app/
+├── vendor/
+├── writable/
+├── .env
+└── htdocs/             # document root
+    ├── index.php       # dari public/
+    ├── .htaccess       # dari public/
+    └── assets/         # berkas publik lainnya
+```
+
+Dengan tata letak ini, `public/index.php` dan `app/Config/Paths.php` dapat
+menemukan folder aplikasi, vendor, dan writable tanpa mengubah path. Jika
+hosting tidak mengizinkan file aplikasi berada di luar document root atau
+tidak mendukung tata letak ini, jangan mengunggah seluruh proyek ke folder
+publik; minta petunjuk layout yang didukung dari penyedia hosting terlebih
+dahulu.
+
+### Langkah deployment
+
+1. Pastikan hosting memenuhi kebutuhan PHP di atas. Buat database MySQL dari
+   panel hosting dan catat hostname, nama database, username, dan password.
+2. Siapkan dependensi production di komputer lokal dengan
+   `composer install --no-dev --optimize-autoloader`. Unggah folder `app/`,
+   `vendor/`, `writable/`, dan file aplikasi yang diperlukan ke lokasi privat
+   di atas document root. Unggah **isi** folder `public/` ke document root.
+   Jangan unggah `.env`, `tests/`, atau `db_statistik_pemain.sql` ke folder
+   publik.
+3. Buat `.env` di folder privat (salin dari `env`) dan atur setidaknya:
+
+   ```ini
+   CI_ENVIRONMENT = production
+   app.baseURL = 'https://DOMAIN-ANDA/'
+   database.default.hostname = 'HOSTNAME-DATABASE'
+   database.default.database = 'NAMA-DATABASE'
+   database.default.username = 'USERNAME-DATABASE'
+   database.default.password = 'PASSWORD-DATABASE'
+   database.default.DBDriver = MySQLi
+   database.default.port = 3306
+   ```
+
+   Ganti semua nilai contoh dengan nilai dari panel hosting. Jangan commit atau
+   mengirim file `.env` maupun kredensial database.
+4. Pastikan `writable/` dan subfoldernya dapat ditulis oleh PHP. Jangan
+   mengubahnya menjadi dapat ditulis semua pengguna jika hosting menyediakan
+   pengaturan izin yang lebih terbatas.
+5. Siapkan skema dan data melalui phpMyAdmin atau metode database yang
+   disediakan hosting. Dump `db_statistik_pemain.sql` tidak disertakan di Git
+   dan berisi akun demo; jangan impor ke situs publik sebelum mengganti kata
+   sandi admin dengan hash baru. Seeder juga memakai kata sandi demo
+   `admin123`.
+6. Setelah skema siap, buka domain dengan HTTPS dan uji halaman publik serta
+   login admin. Pastikan akun admin sudah memakai kata sandi unik sebelum
+   situs dibuka untuk umum.
+
+Folder `vendor/` diabaikan Git, jadi tidak ikut tersedia saat mengunduh source
+dari GitHub. Unggah dependensi production yang telah disiapkan Composer secara
+terpisah.

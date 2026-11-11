@@ -50,4 +50,8 @@ $routes->group('admin', ['filter' => 'adminAuth'], static function ($routes) {
 
     // Laporan
     $routes->get('reports/download', 'Admin\ReportController::download');
+
+    // Papan Peringkat & Komparasi (Panel Pelatih)
+    $routes->get('leaderboard', 'Home::leaderboard/admin');
+    $routes->get('compare', 'Home::compare/admin');
 });

@@ -166,6 +166,8 @@ class PlayerStatModelTest extends TestCase
             'kicking' => 0,
             'control' => 74,
         ], 'Kiper (GK)'));
+        self::assertFalse(PlayerStatModel::isLegacyGoalkeeperStat(null, 'Kiper (GK)'));
+        self::assertFalse(PlayerStatModel::isLegacyGoalkeeperStat([], 'Kiper (GK)'));
         self::assertFalse(PlayerStatModel::isLegacyGoalkeeperStat([
             'average' => 0,
             'diving' => 0,
@@ -185,5 +187,34 @@ class PlayerStatModelTest extends TestCase
             'kicking' => 0,
             'control' => 0,
         ], 'Kiper (GK)'));
+    }
+
+    public function testGetCardTierResolvesCorrectThresholds(): void
+    {
+        // 0 - 60 => Standard
+        self::assertSame('standard', PlayerStatModel::getCardTier(null)['key']);
+        self::assertSame('standard', PlayerStatModel::getCardTier(0)['key']);
+        self::assertSame('standard', PlayerStatModel::getCardTier(59.9)['key']);
+        self::assertSame('standard', PlayerStatModel::getCardTier(60)['key']);
+        self::assertSame('card-tier-standard', PlayerStatModel::getCardTier(60)['class']);
+
+        // 61 - 79 => Pro
+        self::assertSame('pro', PlayerStatModel::getCardTier(61)['key']);
+        self::assertSame('pro', PlayerStatModel::getCardTier(70.5)['key']);
+        self::assertSame('pro', PlayerStatModel::getCardTier(79)['key']);
+        self::assertSame('pro', PlayerStatModel::getCardTier(79.9)['key']);
+        self::assertSame('card-tier-pro', PlayerStatModel::getCardTier(75)['class']);
+
+        // 80 - 89 => Elite
+        self::assertSame('elite', PlayerStatModel::getCardTier(80)['key']);
+        self::assertSame('elite', PlayerStatModel::getCardTier(85)['key']);
+        self::assertSame('elite', PlayerStatModel::getCardTier(89.9)['key']);
+        self::assertSame('card-tier-elite', PlayerStatModel::getCardTier(85)['class']);
+
+        // 90 - 100 => Legendary
+        self::assertSame('legendary', PlayerStatModel::getCardTier(90)['key']);
+        self::assertSame('legendary', PlayerStatModel::getCardTier(95)['key']);
+        self::assertSame('legendary', PlayerStatModel::getCardTier(100)['key']);
+        self::assertSame('card-tier-legendary', PlayerStatModel::getCardTier(95)['class']);
     }
 }

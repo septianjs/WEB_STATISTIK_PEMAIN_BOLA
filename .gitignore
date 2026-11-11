@@ -64,6 +64,8 @@ db_statistik_pemain.sql
 /writable/debugbar/*
 !/writable/debugbar/index.html
 
+/public/null/ci_session*
+
 php_errors.log
 
 #-------------------------

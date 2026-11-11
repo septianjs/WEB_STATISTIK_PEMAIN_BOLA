@@ -1,4 +1,4 @@
-<?= $this->extend('layout/main') ?>
+<?= $this->extend($layout ?? 'layout/main') ?>
 
 <?= $this->section('content') ?>
 
@@ -7,17 +7,16 @@
     <!-- Editorial Header (Emerald Pitch) -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-pitch-750/80 pb-6">
         <div>
-            <span class="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-widest block mb-1">Peringkat & Evaluasi Skuad</span>
             <h1 class="font-display font-black text-2xl sm:text-3xl text-white tracking-tight">
-                LEADERBOARD ATRIBUT & PERFORMA
+                Papan Peringkat Pemain
             </h1>
             <p class="text-xs sm:text-sm text-emerald-200/70 mt-1 max-w-xl">
-                Daftar atlet terbaik dalam penguasaan teknis dan kebugaran berdasarkan data evaluasi terverifikasi.
+                Peringkat pemain terbaik berdasarkan hasil evaluasi performa.
             </p>
         </div>
 
         <!-- Indicator Filter -->
-        <form action="<?= site_url('leaderboard') ?>" method="GET" class="flex items-center gap-2">
+        <form action="<?= site_url(!empty($isAdminMode) ? 'admin/leaderboard' : 'leaderboard') ?>" method="GET" class="flex items-center gap-2">
             <span class="text-xs text-emerald-400/80 font-mono">Periode:</span>
             <select name="indikator" onchange="this.form.submit()" class="px-3 py-1.5 bg-pitch-900 border border-pitch-750 rounded-lg text-xs text-white focus:outline-none focus:border-emerald-400 font-mono">
                 <option value="">Semua Catatan</option>

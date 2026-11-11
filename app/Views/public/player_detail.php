@@ -15,7 +15,7 @@
     <!-- Top Bar: Navigation & Print Action -->
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 no-print">
         <a href="<?= site_url('/') ?>" class="inline-flex items-center gap-2 text-xs font-semibold text-emerald-300 hover:text-white transition-colors">
-            <i class="fa-solid fa-arrow-left text-xs"></i> Kembali ke Daftar Skuad
+            <i class="fa-solid fa-arrow-left text-xs"></i> Kembali ke Skuad
         </a>
 
         <div class="flex items-center gap-2.5">
@@ -23,7 +23,7 @@
                 <i class="fa-solid fa-print text-xs text-emerald-400"></i> Cetak / Simpan PDF
             </button>
             <a href="<?= site_url('compare?p1=' . $player['id']) ?>" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-pitch-850 hover:bg-pitch-800 text-emerald-300 border border-emerald-500/30 text-xs font-semibold transition-colors">
-                <i class="fa-solid fa-code-compare text-xs"></i> Bandingkan Atlet
+                <i class="fa-solid fa-code-compare text-xs"></i> Bandingkan Pemain
             </a>
         </div>
     </div>
@@ -42,7 +42,7 @@
                 <div class="text-right">
                     <?php if ($player['is_captain']): ?>
                         <span class="px-2 py-0.5 rounded bg-amber-500/20 border border-amber-500/40 text-amber-300 font-mono font-bold text-[10px] uppercase block mb-1">
-                            KETUA PEMAIN
+                            KAPTEN TIM
                         </span>
                     <?php endif; ?>
                     <span class="text-xs font-bold text-slate-300 block"><?= esc($player['posisi']) ?></span>

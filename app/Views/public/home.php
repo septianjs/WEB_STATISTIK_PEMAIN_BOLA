@@ -8,20 +8,17 @@
         
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
             <div>
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-pitch-800 text-emerald-400 border border-pitch-750 tracking-wider uppercase mb-3">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Database Tim Sepak Bola
-                </span>
                 <h1 class="font-display font-black text-2xl sm:text-3xl text-white tracking-tight leading-tight">
-                    STATISTIK & EVALUASI PERFORMA PEMAIN
+                    STATISTIK & PERFORMA PEMAIN
                 </h1>
                 <p class="text-xs sm:text-sm text-emerald-200/70 mt-1 max-w-2xl">
-                    Transparansi penilaian teknik, daya tahan fisik, serta progres performa berkala mingguan seluruh pemain tim.
+                    Evaluasi performa berkala seluruh pemain tim.
                 </p>
             </div>
 
             <div class="flex items-center gap-2">
                 <a href="<?= site_url('leaderboard') ?>" class="px-3.5 py-2 rounded-lg bg-pitch-800 hover:bg-pitch-750 text-emerald-300 border border-pitch-700 text-xs font-semibold tracking-wide transition-colors">
-                    Lihat Leaderboard &rarr;
+                    Papan Peringkat &rarr;
                 </a>
             </div>
         </div>
@@ -68,7 +65,7 @@
 
     <!-- Captain Dossier (Jose - No. 10) -->
     <?php if ($captain): ?>
-        <?php $capStat = $captain['latest_stat']; ?>
+        <?php $capStat = $captain['latest_stat'] ?? []; ?>
         <section class="editorial-panel rounded-2xl p-6 sm:p-7 border-l-4 border-l-emerald-400 shadow-lg">
             <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
                 
@@ -83,7 +80,7 @@
                     <div>
                         <div class="flex items-center gap-2 mb-1">
                             <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-mono font-bold text-[10px] uppercase tracking-wider">
-                                KETUA PEMAIN / KAPTEN
+                                KAPTEN TIM
                             </span>
                             <span class="text-slate-400 text-xs font-mono">No. #<?= esc($captain['nomor_punggung']) ?></span>
                         </div>
@@ -91,9 +88,11 @@
                             <?= esc($captain['nama']) ?>
                             <span class="text-emerald-300/80 text-base font-normal">(<?= esc($captain['posisi']) ?>)</span>
                         </h2>
-                        <p class="text-xs text-slate-300 mt-1 max-w-xl leading-relaxed">
-                            <?= esc($captain['bio'] ?: 'Ketua pemain (kapten tim). Bertanggung jawab memimpin ritme permainan dan menjadi contoh kedisiplinan bagi seluruh anggota tim.') ?>
-                        </p>
+                        <?php if (!empty($captain['bio'])): ?>
+                            <p class="text-xs text-slate-300 mt-1 max-w-xl leading-relaxed">
+                                <?= esc($captain['bio']) ?>
+                            </p>
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -116,9 +115,9 @@
                     </div>
 
                     <!-- Overall Score Box -->
-                    <div class="p-3 rounded-xl bg-pitch-900 border border-emerald-500/40 text-center flex-shrink-0 min-w-[110px]">
+                    <div class="p-3 rounded-xl bg-pitch-900 border border-emerald-500/40 text-center flex-shrink-0 min-w-[110px] shadow-lg shadow-black/40">
                         <span class="text-[9px] font-mono font-bold text-emerald-400 uppercase block tracking-wider">AVERAGE</span>
-                        <span class="font-mono font-black text-2xl text-emerald-400 tabular-nums leading-tight">
+                        <span class="font-mono font-black text-2xl text-emerald-400 tabular-nums leading-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
                             <?= number_format((float)($capStat['average'] ?? 100), 0) ?>
                         </span>
                         <span class="text-[10px] text-emerald-300/70 font-mono block"><?= esc($capStat['indikator'] ?? 'Minggu 1') ?></span>
@@ -190,13 +189,13 @@
     <div class="flex items-center justify-between border-b border-pitch-750/80 pb-3">
         <div>
             <h2 class="font-display font-bold text-lg text-white tracking-tight">
-                DAFTAR SKUAD & MATRIKS NILAI
+                Skuad Pemain
             </h2>
             <p class="text-xs text-emerald-300/70">
-                <?= $selectedIndicator ? 'Statistik periode ' . esc($selectedIndicator) : 'Menampilkan statistik evaluasi terkini' ?>
+                <?= $selectedIndicator ? 'Periode: ' . esc($selectedIndicator) : 'Data terbaru' ?>
             </p>
         </div>
-        <span class="text-xs text-emerald-400/80 font-mono">Total: <strong class="text-white"><?= count($players) ?></strong> atlet</span>
+        <span class="text-xs text-emerald-400/80 font-mono">Total: <strong class="text-white"><?= count($players) ?></strong> pemain</span>
     </div>
 
     <!-- Players Roster Grid -->
@@ -217,9 +216,10 @@
                     $fotoSrc = $p['foto'] ? 'uploads/players/' . $p['foto'] : 'uploads/players/default.svg';
                     $dominantFoot = strtolower(trim((string)($p['kaki_terkuat'] ?? 'kanan')));
                     $rightFootDominant = in_array($dominantFoot, ['kanan', 'right'], true);
+                    $cardTier = \App\Models\PlayerStatModel::getCardTier($avg);
                 ?>
                 
-                <article class="player-card">
+                <article class="player-card <?= esc($cardTier['class']) ?>">
                     <div class="player-card-inner">
                         <div class="player-card-art">
                             <img src="<?= base_url($fotoSrc) ?>" alt="<?= esc($p['nama']) ?>" class="player-card-photo">

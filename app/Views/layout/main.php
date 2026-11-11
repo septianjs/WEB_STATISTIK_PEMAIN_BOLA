@@ -152,6 +152,7 @@
         .metric-card:nth-child(4n + 3) { background: linear-gradient(135deg, #F0EDFF, #F8F6FF) !important; }
         .metric-card:nth-child(4n + 4) { background: linear-gradient(135deg, #FFF4E5, #FFFAF1) !important; }
 
+        /* Base / Standard Card (0 - 60) */
         .player-card {
             width: 100%;
             max-width: 230px;
@@ -159,10 +160,11 @@
             padding: 3px;
             background: linear-gradient(145deg, #FDE68A, #F8FAFC 25%, #818CF8 62%, #F472B6);
             clip-path: polygon(0 0, 38% 0, 44% 1.5%, 50% 0, 56% 1.5%, 62% 0, 100% 0, 100% 94%, 50% 100%, 0 94%);
-            transition: opacity 0.2s ease;
+            transition: transform 0.25s ease, filter 0.25s ease, opacity 0.2s ease;
         }
         .player-card:hover {
-            opacity: 0.96;
+            opacity: 0.98;
+            transform: translateY(-2px);
         }
         .player-card:nth-child(4n + 2) {
             background: linear-gradient(145deg, #67E8F9, #F8FAFC 28%, #60A5FA 65%, #A78BFA);
@@ -177,6 +179,397 @@
             overflow: hidden;
             background: #FFFFFF;
             clip-path: polygon(0 0, 38% 0, 44% 1.5%, 50% 0, 56% 1.5%, 62% 0, 100% 0, 100% 94%, 50% 100%, 0 94%);
+        }
+
+        /* --- TIER 2: PRO (61 - 79) - Border Tebal, Lekukan Aerodinamis, Sapphire Cyber --- */
+        .player-card.card-tier-pro {
+            padding: 6px;
+            background: linear-gradient(135deg, #38BDF8 0%, #E0F2FE 20%, #0284C7 45%, #0369A1 70%, #BAE6FD 85%, #0284C7 100%) !important;
+            clip-path: polygon(
+                14px 0,
+                calc(50% - 24px) 0,
+                calc(50% - 16px) 5px,
+                calc(50% + 16px) 5px,
+                calc(50% + 24px) 0,
+                calc(100% - 14px) 0,
+                100% 14px,
+                100% calc(46% - 16px),
+                calc(100% - 10px) 46%,
+                100% calc(46% + 16px),
+                100% calc(100% - 28px),
+                calc(100% - 20px) calc(100% - 10px),
+                50% 100%,
+                20px calc(100% - 10px),
+                0 calc(100% - 28px),
+                0 calc(46% + 16px),
+                10px 46%,
+                0 calc(46% - 16px),
+                0 14px
+            ) !important;
+            filter: drop-shadow(0 4px 14px rgba(2, 132, 199, 0.45));
+        }
+        .player-card.card-tier-pro:hover {
+            transform: translateY(-4px);
+            filter: drop-shadow(0 8px 24px rgba(2, 132, 199, 0.65));
+        }
+        .player-card.card-tier-pro .player-card-inner {
+            clip-path: polygon(
+                14px 0,
+                calc(50% - 24px) 0,
+                calc(50% - 16px) 5px,
+                calc(50% + 16px) 5px,
+                calc(50% + 24px) 0,
+                calc(100% - 14px) 0,
+                100% 14px,
+                100% calc(46% - 16px),
+                calc(100% - 10px) 46%,
+                100% calc(46% + 16px),
+                100% calc(100% - 28px),
+                calc(100% - 20px) calc(100% - 10px),
+                50% 100%,
+                20px calc(100% - 10px),
+                0 calc(100% - 28px),
+                0 calc(46% + 16px),
+                10px 46%,
+                0 calc(46% - 16px),
+                0 14px
+            ) !important;
+        }
+        .player-card.card-tier-pro .player-card-art {
+            background: linear-gradient(155deg, #082F49 0%, #0369A1 50%, #0284C7 100%) !important;
+        }
+        .player-card.card-tier-pro .player-card-stats {
+            background: #F0F9FF !important;
+        }
+        .player-card.card-tier-pro .player-card-footer {
+            background: #E0F2FE !important;
+            border-top: 1px solid #BAE6FD;
+        }
+        .player-card.card-tier-pro .player-card-overall {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 12px rgba(56, 189, 248, 0.65) !important;
+        }
+
+        /* --- TIER 3: ELITE (80 - 100) - Bingkai Mahkota Apex Champion, Emas Mewah, Animasi Aura Tipis --- */
+        @keyframes cardEliteAuraPulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.6)) drop-shadow(0 0 24px rgba(16, 185, 129, 0.35));
+            }
+            50% {
+                filter: drop-shadow(0 0 18px rgba(251, 191, 36, 0.9)) drop-shadow(0 0 38px rgba(16, 185, 129, 0.6));
+            }
+        }
+        @keyframes eliteShimmerSweep {
+            0% { transform: translateX(-100%) rotate(25deg); }
+            100% { transform: translateX(200%) rotate(25deg); }
+        }
+
+        .player-card.card-tier-elite {
+            padding: 7px;
+            background: linear-gradient(135deg, #FDE047 0%, #D97706 18%, #FFFBEB 38%, #F59E0B 60%, #78350F 80%, #FBBF24 100%) !important;
+            clip-path: polygon(
+                18px 0,
+                calc(50% - 32px) 0,
+                calc(50% - 20px) 7px,
+                50% 0,
+                calc(50% + 20px) 7px,
+                calc(50% + 32px) 0,
+                calc(100% - 18px) 0,
+                100% 18px,
+                100% 28%,
+                calc(100% - 7px) 33%,
+                100% 38%,
+                100% 64%,
+                calc(100% - 11px) 70%,
+                100% 76%,
+                100% calc(100% - 32px),
+                calc(100% - 18px) calc(100% - 18px),
+                50% 100%,
+                18px calc(100% - 18px),
+                0 calc(100% - 32px),
+                0 76%,
+                11px 70%,
+                0 64%,
+                0 38%,
+                7px 33%,
+                0 28%,
+                0 18px
+            ) !important;
+            animation: cardEliteAuraPulse 3.5s ease-in-out infinite;
+        }
+        .player-card.card-tier-elite:hover {
+            transform: translateY(-5px) scale(1.02);
+            filter: drop-shadow(0 0 24px rgba(251, 191, 36, 0.95)) drop-shadow(0 0 45px rgba(16, 185, 129, 0.8)) !important;
+        }
+        .player-card.card-tier-elite .player-card-inner {
+            clip-path: polygon(
+                18px 0,
+                calc(50% - 32px) 0,
+                calc(50% - 20px) 7px,
+                50% 0,
+                calc(50% + 20px) 7px,
+                calc(50% + 32px) 0,
+                calc(100% - 18px) 0,
+                100% 18px,
+                100% 28%,
+                calc(100% - 7px) 33%,
+                100% 38%,
+                100% 64%,
+                calc(100% - 11px) 70%,
+                100% 76%,
+                100% calc(100% - 32px),
+                calc(100% - 18px) calc(100% - 18px),
+                50% 100%,
+                18px calc(100% - 18px),
+                0 calc(100% - 32px),
+                0 76%,
+                11px 70%,
+                0 64%,
+                0 38%,
+                7px 33%,
+                0 28%,
+                0 18px
+            ) !important;
+        }
+        .player-card.card-tier-elite .player-card-art {
+            background: linear-gradient(155deg, #0A0F0D 0%, #064E3B 48%, #047857 80%, #B45309 100%) !important;
+            position: relative;
+        }
+        .player-card.card-tier-elite .player-card-art::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(105deg, transparent 40%, rgba(254, 240, 138, 0.22) 50%, transparent 60%);
+            animation: eliteShimmerSweep 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .player-card.card-tier-elite .player-card-stats {
+            background: #FEFCE8 !important;
+            color: #713F12 !important;
+        }
+        .player-card.card-tier-elite .player-card-stat span {
+            color: #854D0E !important;
+        }
+        .player-card.card-tier-elite .player-card-stat strong {
+            color: #451A03 !important;
+        }
+        .player-card.card-tier-elite .player-card-footer {
+            background: #FEF9C3 !important;
+            border-top: 1px solid #FDE047;
+        }
+        .player-card.card-tier-elite .player-card-overall {
+            color: #FEF08A !important;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 14px rgba(234, 179, 8, 0.8) !important;
+        }
+
+        /* --- TIER 4: LEGENDARY (90 - 100) - Bingkai Mahkota Prismatik, Holographic Border, Multi-Aura --- */
+        @keyframes legendaryHoloBorder {
+            0%   { background-position: 0% 50%;   filter: drop-shadow(0 0 14px rgba(255, 215, 0, 0.75)) drop-shadow(0 0 30px rgba(16, 185, 129, 0.45)); }
+            25%  { background-position: 50% 100%; filter: drop-shadow(0 0 18px rgba(192, 132, 252, 0.75)) drop-shadow(0 0 36px rgba(56, 189, 248, 0.55)); }
+            50%  { background-position: 100% 0%;  filter: drop-shadow(0 0 20px rgba(251, 113, 133, 0.75)) drop-shadow(0 0 38px rgba(250, 204, 21, 0.55)); }
+            75%  { background-position: 50% 0%;   filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.75)) drop-shadow(0 0 34px rgba(16, 185, 129, 0.55)); }
+            100% { background-position: 0% 50%;   filter: drop-shadow(0 0 14px rgba(255, 215, 0, 0.75)) drop-shadow(0 0 30px rgba(16, 185, 129, 0.45)); }
+        }
+        @keyframes legendaryShimmerSweep {
+            0%   { transform: translateX(-150%) rotate(18deg); opacity: 0; }
+            15%  { opacity: 1; }
+            85%  { opacity: 1; }
+            100% { transform: translateX(250%) rotate(18deg); opacity: 0; }
+        }
+        @keyframes legendaryInnerGlow {
+            0%, 100% { box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.08), inset 0 0 40px rgba(192, 132, 252, 0.05); }
+            50%      { box-shadow: inset 0 0 30px rgba(255, 215, 0, 0.14), inset 0 0 60px rgba(56, 189, 248, 0.08); }
+        }
+
+        .player-card.card-tier-legendary {
+            padding: 8px;
+            background: linear-gradient(270deg,
+                #FFD700, #FF6B6B, #C084FC, #38BDF8, #10B981, #FBBF24, #FFD700
+            ) !important;
+            background-size: 400% 400% !important;
+            clip-path: polygon(
+                /* Crown — 5 peaks */
+                0 14px,
+                6% 0,
+                12% 9px,
+                28% 0,
+                38% 6px,
+                50% 0,
+                62% 6px,
+                72% 0,
+                88% 9px,
+                94% 0,
+                100% 14px,
+                /* Right blade notches */
+                100% 26%,
+                calc(100% - 5px) 30%,
+                100% 34%,
+                100% 54%,
+                calc(100% - 8px) 59%,
+                100% 64%,
+                100% 78%,
+                calc(100% - 5px) 82%,
+                100% 86%,
+                /* Bottom deep chevron */
+                100% calc(100% - 28px),
+                calc(100% - 22px) calc(100% - 10px),
+                50% 100%,
+                22px calc(100% - 10px),
+                0 calc(100% - 28px),
+                /* Left blade notches */
+                0 86%,
+                5px 82%,
+                0 78%,
+                0 64%,
+                8px 59%,
+                0 54%,
+                0 34%,
+                5px 30%,
+                0 26%
+            ) !important;
+            animation: legendaryHoloBorder 4s ease infinite;
+        }
+        .player-card.card-tier-legendary:hover {
+            transform: translateY(-6px) scale(1.03);
+            filter: drop-shadow(0 0 28px rgba(255, 215, 0, 0.95)) drop-shadow(0 0 50px rgba(192, 132, 252, 0.7)) drop-shadow(0 0 70px rgba(16, 185, 129, 0.5)) !important;
+        }
+        .player-card.card-tier-legendary .player-card-inner {
+            background: #030712 !important;
+            clip-path: polygon(
+                0 14px,
+                6% 0,
+                12% 9px,
+                28% 0,
+                38% 6px,
+                50% 0,
+                62% 6px,
+                72% 0,
+                88% 9px,
+                94% 0,
+                100% 14px,
+                100% 26%,
+                calc(100% - 5px) 30%,
+                100% 34%,
+                100% 54%,
+                calc(100% - 8px) 59%,
+                100% 64%,
+                100% 78%,
+                calc(100% - 5px) 82%,
+                100% 86%,
+                100% calc(100% - 28px),
+                calc(100% - 22px) calc(100% - 10px),
+                50% 100%,
+                22px calc(100% - 10px),
+                0 calc(100% - 28px),
+                0 86%,
+                5px 82%,
+                0 78%,
+                0 64%,
+                8px 59%,
+                0 54%,
+                0 34%,
+                5px 30%,
+                0 26%
+            ) !important;
+            animation: legendaryInnerGlow 4s ease-in-out infinite;
+        }
+        .player-card.card-tier-legendary .player-card-art {
+            background: linear-gradient(155deg, #030712 0%, #1A0A2E 28%, #0C1A30 50%, #064E3B 78%, #422006 100%) !important;
+            position: relative;
+        }
+        .player-card.card-tier-legendary .player-card-art::after {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -60%;
+            width: 220%;
+            height: 220%;
+            background: linear-gradient(
+                105deg,
+                transparent 30%,
+                rgba(255, 215, 0, 0.18) 42%,
+                rgba(192, 132, 252, 0.12) 48%,
+                rgba(56, 189, 248, 0.15) 52%,
+                rgba(255, 215, 0, 0.10) 58%,
+                transparent 70%
+            );
+            animation: legendaryShimmerSweep 3.5s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .player-card.card-tier-legendary .player-card-stats {
+            background: linear-gradient(135deg, #0C0A09, #1C1917) !important;
+        }
+        .player-card.card-tier-legendary .player-card-stat span {
+            color: #A8A29E !important;
+        }
+        .player-card.card-tier-legendary .player-card-stat strong {
+            color: #FDE68A !important;
+        }
+        .player-card.card-tier-legendary .player-card-footer {
+            background: linear-gradient(135deg, #0C0A09, #1C1917) !important;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        .player-card.card-tier-legendary .player-card-link {
+            color: #FDE68A !important;
+        }
+        .player-card.card-tier-legendary .player-card-ball {
+            color: #A8A29E !important;
+        }
+        .player-card.card-tier-legendary .foot-indicator {
+            color: #A8A29E !important;
+        }
+        .player-card.card-tier-legendary .dominant-foot {
+            color: #FDE68A !important;
+        }
+        .player-card.card-tier-legendary .player-card-overall {
+            color: #FFFFFF !important;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.9), 0 0 20px rgba(192, 132, 252, 0.6), 0 2px 8px rgba(0, 0, 0, 0.95) !important;
+        }
+        .player-card.card-tier-legendary .player-card-position {
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.7), 0 2px 6px rgba(0, 0, 0, 0.9) !important;
+        }
+        .player-card.card-tier-legendary .player-card-name {
+            background: rgba(3, 7, 18, 0.92) !important;
+            border-top: 1px solid rgba(255, 215, 0, 0.15);
+        }
+        .player-card.card-tier-legendary .player-card-shirt {
+            text-shadow: 0 1px 2px #000, 0 0 8px #FFD700, 0 0 14px rgba(255, 215, 0, 0.7) !important;
+        }
+
+        /* Tier Badges */
+        .player-card-badges {
+            position: absolute;
+            top: 0.9rem;
+            right: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.3rem;
+            z-index: 10;
+        }
+        .player-card-badges .player-card-captain {
+            position: static;
+        }
+        .player-card-tier-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font: 800 0.54rem/1 "JetBrains Mono", monospace;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .tier-badge-pro {
+            background: #0284C7;
+            color: #FFFFFF;
+            border: 1px solid #7DD3FC;
+            box-shadow: 0 2px 6px rgba(2, 132, 199, 0.5);
+        }
+        .tier-badge-elite {
+            background: linear-gradient(135deg, #F59E0B, #B45309);
+            color: #FFFFFF;
+            border: 1px solid #FDE68A;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.6);
         }
         .player-card-art {
             height: 13rem;
@@ -207,9 +600,11 @@
             flex-direction: column;
             align-items: flex-start;
             color: #FFFFFF;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
         }
         .player-card-overall {
             font: 800 1.9rem/0.95 "Space Grotesk", sans-serif;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 1px 3px rgba(15, 23, 42, 0.95);
         }
         .player-card-position {
             margin-top: 0.25rem;
@@ -400,7 +795,6 @@
                             <span class="font-display font-bold text-base tracking-tight text-white flex items-center gap-1.5 leading-none">
                                 STATISTIK <span class="text-emerald-400">PEMAIN</span>
                             </span>
-                            <span class="block text-[10px] text-emerald-300/80 font-mono tracking-wider uppercase mt-0.5">Portal Resmi Performa Tim</span>
                         </div>
                     </a>
                 </div>
@@ -414,13 +808,17 @@
                         <i class="fa-solid fa-chart-simple mr-1.5 text-xs text-emerald-400/80"></i> Papan Peringkat
                     </a>
                     <a href="<?= site_url('compare') ?>" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold tracking-wide transition-colors <?= strpos(current_url(), 'compare') !== false ? 'bg-pitch-800 text-emerald-300 border border-pitch-700' : 'text-slate-300 hover:text-white hover:bg-pitch-850' ?>">
-                        <i class="fa-solid fa-code-compare mr-1.5 text-xs text-emerald-400/80"></i> Komparasi Head-to-Head
+                        <i class="fa-solid fa-code-compare mr-1.5 text-xs text-emerald-400/80"></i> Bandingkan Pemain
                     </a>
                 </nav>
 
                 <!-- Right Side Actions -->
                 <div class="flex items-center gap-3">
                     <?php if (session()->get('is_admin_logged_in')): ?>
+                        <a href="<?= site_url('admin/dashboard') ?>" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-pitch-750 bg-pitch-850 hover:bg-pitch-800 text-emerald-300 text-xs font-semibold tracking-wide transition-colors">
+                            <i class="fa-solid fa-gauge text-xs text-emerald-400"></i>
+                            <span>Panel Pelatih</span>
+                        </a>
                         <a href="<?= site_url('logout') ?>" class="p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors" title="Logout">
                             <i class="fa-solid fa-right-from-bracket text-sm"></i>
                         </a>
@@ -449,7 +847,7 @@
                 <i class="fa-solid fa-chart-simple text-xs"></i> Papan Peringkat
             </a>
             <a href="<?= site_url('compare') ?>" class="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold <?= strpos(current_url(), 'compare') !== false ? 'bg-pitch-800 text-emerald-300' : 'text-slate-300 hover:bg-pitch-850' ?>">
-                <i class="fa-solid fa-code-compare text-xs"></i> Komparasi Head-to-Head
+                <i class="fa-solid fa-code-compare text-xs"></i> Bandingkan Pemain
             </a>
             <?php if (!session()->get('is_admin_logged_in')): ?>
                 <div class="pt-2 border-t border-pitch-750">
@@ -467,24 +865,17 @@
     </main>
 
     <!-- Clean Pitch Footer -->
-    <footer class="border-t border-pitch-750/80 bg-pitch-900 py-8 text-slate-400 text-xs mt-16 no-print">
+    <footer class="border-t border-pitch-750/80 bg-pitch-900 py-6 text-slate-400 text-xs mt-16 no-print">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div class="flex items-center gap-2.5">
                     <div class="w-6 h-6 rounded bg-pitch-850 border border-pitch-700 flex items-center justify-center text-emerald-400 text-xs">
                         <i class="fa-solid fa-futbol"></i>
                     </div>
-                    <div>
-                        <span class="font-display font-bold text-white tracking-wide">STATISTIK PEMAIN BOLA</span>
-                        <span class="text-emerald-300/70 ml-2">Sistem Evaluasi Sepak Bola Profesional</span>
-                    </div>
+                    <span class="font-display font-bold text-white tracking-wide">STATISTIK PEMAIN BOLA</span>
                 </div>
 
-                <div class="flex items-center gap-4 text-slate-400 font-mono text-[11px]">
-                    <span>Kapten: <strong class="text-white">Jose #10</strong></span>
-                    <span>•</span>
-                    <span>Emerald Pitch Theme</span>
-                    <span>•</span>
+                <div class="text-slate-400 font-mono text-[11px]">
                     <span>&copy; <?= date('Y') ?></span>
                 </div>
             </div>

@@ -122,7 +122,7 @@ class Home extends BaseController
     /**
      * Halaman Leaderboard / Peringkat Atribut
      */
-    public function leaderboard()
+    public function leaderboard(?string $mode = null)
     {
         $indicator = $this->request->getGet('indikator');
         $availableIndicators = $this->statModel->getDistinctIndicators();
@@ -135,8 +135,12 @@ class Home extends BaseController
         $topFisik     = $this->statModel->getTopPlayers('fisik', 5, $indicator);
         $topDefending = $this->statModel->getTopPlayers('defending', 5, $indicator);
 
+        $isAdminMode = $mode === 'admin' || strpos(current_url(), 'admin/leaderboard') !== false;
+
         $data = [
-            'title'               => 'Leaderboard & Top Statistik Tim',
+            'title'               => 'Papan Peringkat Pemain',
+            'layout'              => $isAdminMode ? 'layout/admin' : 'layout/main',
+            'isAdminMode'         => $isAdminMode,
             'availableIndicators' => $availableIndicators,
             'selectedIndicator'   => $indicator,
             'topOverall'          => $topOverall,
@@ -154,7 +158,7 @@ class Home extends BaseController
     /**
      * Halaman Perbandingan Statistik Pemain (Head-to-Head)
      */
-    public function compare()
+    public function compare(?string $mode = null)
     {
         $allPlayers = $this->playerModel->orderBy('nama', 'ASC')->findAll();
 
@@ -172,13 +176,17 @@ class Home extends BaseController
         $player1 = $p1_id ? $this->playerModel->getPlayerWithAllStats($p1_id) : null;
         $player2 = $p2_id ? $this->playerModel->getPlayerWithAllStats($p2_id) : null;
 
+        $isAdminMode = $mode === 'admin' || strpos(current_url(), 'admin/compare') !== false;
+
         $data = [
-            'title'      => 'Bandingkan Statistik Pemain (Head-to-Head)',
-            'allPlayers' => $allPlayers,
-            'player1'    => $player1,
-            'player2'    => $player2,
-            'p1_id'      => $p1_id,
-            'p2_id'      => $p2_id,
+            'title'       => 'Bandingkan Dua Pemain',
+            'layout'      => $isAdminMode ? 'layout/admin' : 'layout/main',
+            'isAdminMode' => $isAdminMode,
+            'allPlayers'  => $allPlayers,
+            'player1'     => $player1,
+            'player2'     => $player2,
+            'p1_id'       => $p1_id,
+            'p2_id'       => $p2_id,
         ];
 
         return view('public/compare', $data);

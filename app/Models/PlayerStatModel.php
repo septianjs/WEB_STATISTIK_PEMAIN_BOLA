@@ -109,9 +109,9 @@ class PlayerStatModel extends Model
         return self::getPositionCode($position) === 'GK';
     }
 
-    public static function isLegacyGoalkeeperStat(array $stat, string $position): bool
+    public static function isLegacyGoalkeeperStat(?array $stat, string $position): bool
     {
-        if (!self::isGoalkeeper($position) || (float) ($stat['average'] ?? 0) <= 0) {
+        if (empty($stat) || !self::isGoalkeeper($position) || (float) ($stat['average'] ?? 0) <= 0) {
             return false;
         }
 
@@ -124,6 +124,56 @@ class PlayerStatModel extends Model
         $reactions = (float) ($stat['reactions'] ?? 0);
 
         return $reactions === 0.0 || ($reactions > 0 && $reactions === (float) ($stat['control'] ?? 0));
+    }
+
+    /**
+     * Menentukan tier visual kartu pemain berdasarkan overall rating:
+     * - Standard  (0 - 60):  Desain kartu standar
+     * - Pro       (61 - 79): Bingkai lekukan aerodinamis, sapphire cyber
+     * - Elite     (80 - 89): Bingkai mahkota champion, border emas, animasi aura
+     * - Legendary (90 - 100): Bingkai mahkota prismatik, holographic border, multi-aura
+     */
+    public static function getCardTier(?float $average): array
+    {
+        $avg = (float) ($average ?? 0);
+
+        if ($avg >= 90) {
+            return [
+                'key' => 'legendary',
+                'class' => 'card-tier-legendary',
+                'label' => 'LEGENDARY',
+                'min' => 90,
+                'max' => 100,
+            ];
+        }
+
+        if ($avg >= 80) {
+            return [
+                'key' => 'elite',
+                'class' => 'card-tier-elite',
+                'label' => 'ELITE',
+                'min' => 80,
+                'max' => 89,
+            ];
+        }
+
+        if ($avg >= 61) {
+            return [
+                'key' => 'pro',
+                'class' => 'card-tier-pro',
+                'label' => 'PRO',
+                'min' => 61,
+                'max' => 79,
+            ];
+        }
+
+        return [
+            'key' => 'standard',
+            'class' => 'card-tier-standard',
+            'label' => 'STANDARD',
+            'min' => 0,
+            'max' => 60,
+        ];
     }
 
     public static function getInputStatFields(string $position): array

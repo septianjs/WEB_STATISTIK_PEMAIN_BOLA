@@ -38,8 +38,7 @@
             <i class="fa-solid fa-users text-emerald-400/60 text-sm"></i>
         </div>
         <div class="font-display font-black text-2xl text-white mt-1 tabular-nums"><?= (int)$totalPlayers ?></div>
-        <div class="mt-3 pt-2.5 border-t border-pitch-800 text-[11px] text-slate-400 flex items-center justify-between">
-            <span>Terdaftar di skuad</span>
+        <div class="mt-3 pt-2.5 border-t border-pitch-800 text-[11px] text-slate-400 flex items-center justify-end">
             <a href="<?= site_url('admin/players') ?>" class="text-emerald-400 hover:underline">Kelola &rarr;</a>
         </div>
     </div>
@@ -50,8 +49,7 @@
             <i class="fa-solid fa-clipboard-list text-emerald-400/60 text-sm"></i>
         </div>
         <div class="font-display font-black text-2xl text-sky-400 mt-1 tabular-nums"><?= (int)$totalStats ?></div>
-        <div class="mt-3 pt-2.5 border-t border-pitch-800 text-[11px] text-slate-400 flex items-center justify-between">
-            <span>Rekaman statistik</span>
+        <div class="mt-3 pt-2.5 border-t border-pitch-800 text-[11px] text-slate-400 flex items-center justify-end">
             <a href="<?= site_url('admin/stats') ?>" class="text-sky-400 hover:underline">Daftar &rarr;</a>
         </div>
     </div>
@@ -62,8 +60,8 @@
             <i class="fa-solid fa-chart-line text-emerald-400 text-sm"></i>
         </div>
         <div class="font-display font-black text-2xl text-emerald-400 mt-1 tabular-nums"><?= number_format($teamAverage, 0) ?></div>
-        <div class="mt-3 pt-2.5 border-t border-pitch-800 text-[11px] text-emerald-300/70">
-            <span>Skala maksimum 100</span>
+        <div class="mt-3 pt-2.5 border-t border-pitch-800 text-[11px] text-emerald-300/70 text-right">
+            <span>Rata-rata</span>
         </div>
     </div>
 
@@ -91,7 +89,6 @@
         </div>
         <div>
             <span class="font-display font-bold text-sm text-white group-hover:text-emerald-400 transition-colors block">Input Nilai Statistik</span>
-            <span class="text-xs text-emerald-300/60 block mt-0.5">Penilaian mingguan otomatis terhitung</span>
         </div>
     </a>
 
@@ -101,7 +98,6 @@
         </div>
         <div>
             <span class="font-display font-bold text-sm text-white group-hover:text-sky-400 transition-colors block">Tambah Pemain Baru</span>
-            <span class="text-xs text-sky-300/60 block mt-0.5">Daftarkan atlet ke dalam skuad</span>
         </div>
     </a>
 
@@ -110,8 +106,7 @@
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </div>
         <div>
-            <span class="font-display font-bold text-sm text-white group-hover:text-emerald-400 transition-colors block">Tampilan Publik Pemain</span>
-            <span class="text-xs text-emerald-300/60 block mt-0.5">Pratinjau antarmuka pemain</span>
+            <span class="font-display font-bold text-sm text-white group-hover:text-emerald-400 transition-colors block">Lihat Halaman Pemain</span>
         </div>
     </a>
 </div>

@@ -55,6 +55,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -195,7 +198,7 @@
             </div>
             <div>
                 <span class="font-display font-bold text-white text-sm tracking-tight block leading-none">PANEL PELATIH</span>
-                <span class="text-[10px] text-emerald-400 font-mono tracking-widest uppercase">Pelatih & Evaluasi</span>
+                <span class="text-[10px] text-emerald-400 font-mono tracking-widest uppercase">Sistem Manajemen</span>
             </div>
         </div>
 
@@ -216,6 +219,16 @@
             <a href="<?= site_url('admin/stats') ?>" class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-semibold <?= strpos(current_url(), 'admin/stats') !== false && strpos(current_url(), 'admin/stats/create') === false ? 'sidebar-menu-active' : 'text-slate-300 hover:text-blue-700' ?>">
                 <i class="fa-solid fa-clipboard-list w-4 text-center text-emerald-400/80"></i>
                 <span>Kelola Statistik</span>
+            </a>
+
+            <a href="<?= site_url('admin/leaderboard') ?>" class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-semibold <?= strpos(current_url(), 'admin/leaderboard') !== false ? 'sidebar-menu-active' : 'text-slate-300 hover:text-blue-700' ?>">
+                <i class="fa-solid fa-chart-simple w-4 text-center text-emerald-400/80"></i>
+                <span>Papan Peringkat</span>
+            </a>
+
+            <a href="<?= site_url('admin/compare') ?>" class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-semibold <?= strpos(current_url(), 'admin/compare') !== false ? 'sidebar-menu-active' : 'text-slate-300 hover:text-blue-700' ?>">
+                <i class="fa-solid fa-code-compare w-4 text-center text-emerald-400/80"></i>
+                <span>Bandingkan Pemain</span>
             </a>
 
             <a href="<?= site_url('admin/reports/download') ?>" class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-semibold">
@@ -256,7 +269,7 @@
 
             <div class="flex items-center gap-4">
                 <a href="<?= site_url('/') ?>" class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-lg bg-pitch-850 border border-pitch-750 text-slate-300 hover:text-white transition-colors">
-                    <i class="fa-solid fa-eye text-emerald-400 text-xs"></i> Mode Pemain (Publik)
+                    <i class="fa-solid fa-eye text-emerald-400 text-xs"></i> Halaman Pemain
                 </a>
                 <div class="h-4 w-px bg-pitch-750"></div>
                 <div class="text-right">
